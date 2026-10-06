@@ -6,36 +6,34 @@ export default function App() {
 
   // Aufgabe 1
   console.log(unfaelle[unfaelle.length - 1]);
-  const test = "User";
-  const myString = "Hallo! ${test}";
-  const myTemplateString = `Hallo ${myString}`;
-  const aufgabe1_string = `${unfaelle[unfaelle.length - 1].id_unfall} : ${
+
+  const letzterUnfall = `${unfaelle[unfaelle.length - 1].id_unfall} : ${
     unfaelle[unfaelle.length - 1].schwere
   }`;
 
   // Aufgabe 2
-  const unfaelleLeicht = unfaelle.filter(
-    (unfall) => unfall.strasseart === "Nebenstrasse"
+  const unfaelleNebenstrassen = unfaelle.filter(
+    (unfall) => unfall.strasseart === "Nebenstrasse",
   );
-  console.log(unfaelleLeicht);
+  console.log(unfaelleNebenstrassen);
 
   // Aufgabe 3
   const veloUnfall = unfaelle.find(
     (unfall) =>
       unfall.monat === 11 &&
       unfall.jahr === "2015" &&
-      unfall.fahrrd_bet === true
+      unfall.fahrrd_bet === true,
   );
   console.log(veloUnfall);
 
   return (
     <div className="App">
-      <div>{aufgabe1_string}</div>
+      <div>{letzterUnfall}</div>
       {myTemplateString}
       {/* Aufgabe 4 */}
       <ol>
-        {unfaelle.map((unfall) => (
-          <li>{unfall.id_unfall}</li>
+        {unfaelle.map((unfall, index) => (
+          <li key={index}>{unfall.id_unfall}</li>
           /* Was fehlte hier noch? Die geschweiften Klammern um unfall.id_unfall! Wir erzeugen mit der .map() Funktion dynamisch HTML Elemente und in denen wollen wir eine JavaScript Variable evaluieren. Daher müssen wir mit Klammern wieder in den JS Kontext wechseln. */
         ))}
       </ol>
